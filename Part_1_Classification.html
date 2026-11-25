@@ -7915,7 +7915,7 @@ a.anchor-link {
 <ul>
 <li><strong>Index v původním datasetu:</strong> <code>63769</code> (první instance v testovací sadě při rozdělení 80:20 s <code>random_state=42</code>).</li>
 <li><strong>Identifikátor příspěvku (<code>reel_id</code>):</strong> <code>90464090-f30f-4351-a667-e92d07f6b2bb</code></li>
-<li><strong>Identifikátor tvůrce (<code>creator_id</code>):</strong> <code>aeb2f7ea-c725-4b36-a14a-10174caae5f9</code></li>
+<li><strong>Identifikátor tvůrce (<code>creator_id</code>):</strong> <code>88785ac9-afd2-4fd0-8916-73bed2d81f09</code></li>
 <li><strong>Charakteristika instance:</strong> Příspěvek tvůrce s 2 891 898 sledujícími, publikovaný v 15:00 hodin, o délce 52 sekund, s 8 hashtagy a využitým trendujícím zvukem (<code>trending_audio = True</code>). Skutečné virality skóre činí 7.29, spadá tedy do negativní třídy (<code>is_viral = 0</code>).</li>
 </ul>
 <h3 id="3.-Atribut-z%C3%A1jmu-(Attribute-of-interest)">3. Atribut zájmu (<em>Attribute of interest</em>)<a class="anchor-link" href="#3.-Atribut-z%C3%A1jmu-(Attribute-of-interest)">¶</a></h3><ul>
@@ -8004,7 +8004,7 @@ a.anchor-link {
 <td style="text-align:left"><strong>Profil tvůrce</strong></td>
 <td style="text-align:left"><code>creator_followers</code></td>
 <td style="text-align:center"><code>int64</code></td>
-<td style="text-align:left">Celkový počet sledujících daného tvůrce (1 až 5 mil.).</td>
+<td style="text-align:left">Celkový počet sledujících daného tvůrce (cca 500 až 5 mil.).</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Metadata příspěvku</strong></td>
@@ -8970,7 +8970,7 @@ Nejlepší F1 skóre z validace: 0.0448
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <blockquote>
 <p><strong>Zhodnocení mřížkového vyhledávání pro rozhodovací strom:</strong><br/>
-Mřížkové vyhledávání ukazuje, že mělké stromy (<code>max_depth &lt;= 5</code>) nedokážou zachytit žádné pozitivní případy ($F_1 = 0$), protože při standardním rozhodovacím prahu 0.5 predikují plošně většinovou třídu 0. Hlubší strom (<code>max_depth = 12</code>) s <code>min_samples_leaf = 10</code> dokázal v datech identifikovat specifická nelineární pravidla pro pozitivní třídu a dosáhl nejlepšího validačního F1 skóre. Tento model proto volíme jako reprezentanta rozhodovacího stromu pro finální evaluaci.</p>
+Mřížkové vyhledávání ukazuje, že mělké stromy (<code>max_depth &lt;= 5</code>) nezachytí téměř žádné pozitivní případy ($F_1 \le 0.005$, při hloubce 3 dokonce $F_1 = 0$), protože při standardním rozhodovacím prahu 0.5 predikují téměř výhradně většinovou třídu 0. Hlubší strom (<code>max_depth = 12</code>) s <code>min_samples_leaf = 10</code> dokázal v datech identifikovat specifická nelineární pravidla pro pozitivní třídu a dosáhl nejlepšího validačního F1 skóre. Tento model proto volíme jako reprezentanta rozhodovacího stromu pro finální evaluaci.</p>
 </blockquote>
 </div>
 </div>
@@ -9944,7 +9944,7 @@ Celkové náklady modelu: 1,517,400 Kč (FP: 0 × 100 Kč + FN: 5058 × 300 Kč)
 <blockquote>
 <p><strong>Vysvětlivka k Obrázku 6 a rozbor vlivu syntetických dat na Náhodný les:</strong></p>
 <ul>
-<li><strong>Plošné rozložení důležitosti proměnných:</strong> Z grafu i tabulky je patrné, že deset nejdůležitějších proměnných dosahuje velmi podobné důležitosti v úzkém pásmu <strong>5.2 % až 6.8 %</strong></li>
+<li><strong>Plošné rozložení důležitosti proměnných:</strong> Z grafu i tabulky je patrné, že deset nejdůležitějších proměnných dosahuje velmi podobné důležitosti v úzkém pásmu <strong>5.2 % až 6.8 %</strong>.</li>
 <li><strong>Proč mají binární proměnné nižší skóre:</strong> Atributy <code>trending_audio</code> (0.21 %) a <code>explore_page_boost</code> (0.34 %) vykazují výrazně nižší hodnotu. To je způsobeno známým metodickým zkreslením Gini impurity (MDI bias) ve stromových modelech – spojité proměnné nabízejí tisíce možných dělících bodů, takže jsou při náhodném výběru štěpeny častěji než binární příznaky s jediným prahem.</li>
 <li><strong>KLÍČOVÝ ZÁVĚR – Vliv syntetických dat na selhání náhodného lesa:</strong><br/>
 V reálném světě jsou některé metriky (např. retence, sdílení) silně provázány s viralitou. V tomto syntetickém datasetu však generátor vytvořil atributy bez reálné korelace k cíli ($r \approx 0$).<br/>
@@ -10272,7 +10272,7 @@ List 83: pravděpodobnost virality 25.48%
 <li><code>avg_watch_time_sec</code> (průměrná doba sledování).</li>
 </ul>
 </li>
-<li>Všechny tyto prediktory však mají v syntetickém prostředí velmi vyrovnanou důležitost (kolem 5 %) bez výrazného lídra.</li>
+<li>Všechny tyto prediktory však mají v syntetickém prostředí velmi vyrovnanou důležitost (zhruba 6 až 8 %) bez výrazného lídra.</li>
 </ul>
 <hr/>
 <h3 id="Podrobn%C3%BD-rozbor:-Z%C3%A1sadn%C3%AD-vliv-syntetick%C3%A9-povahy-dat-na-chov%C3%A1n%C3%AD-model%C5%AF">Podrobný rozbor: Zásadní vliv syntetické povahy dat na chování modelů<a class="anchor-link" href="#Podrobn%C3%BD-rozbor:-Z%C3%A1sadn%C3%AD-vliv-syntetick%C3%A9-povahy-dat-na-chov%C3%A1n%C3%AD-model%C5%AF">¶</a></h3><p>Tato práce přinesla zásadní poznatek týkající se chování algoritmů strojového učení na <strong>synteticky generovaných datech</strong>:</p>
@@ -10467,7 +10467,7 @@ Náhodný les: Původní náklad (práh 0.50) = 1,517,400 Kč -&gt; Optimalizova
 <ul>
 <li>Posunem prahu z výchozí hodnoty 0.50 do blízkosti teoretického Bayesovského optima ($\approx 0.21 \text{ až } 0.22$) začnou modely klasifikovat jako virální i videa s nižší predikovanou pravděpodobností.</li>
 <li>Jelikož přehlédnutí virálního hitu stojí 300 Kč a falešný poplach jen 100 Kč, zvýšená ochota riskovat dramaticky redukuje počet False Negatives.</li>
-<li>Tato optimalizace přináší další úsporu <strong>přes 24 000 Kč</strong> pro oba modely, což demonstruje obrovský praktický význam volby prahu při asymetrických nákladech.</li>
+<li>Tato optimalizace přináší další úsporu <strong>25 200 Kč</strong> u rozhodovacího stromu a <strong>23 600 Kč</strong> u náhodného lesa, což demonstruje obrovský praktický význam volby prahu při asymetrických nákladech.</li>
 </ul>
 </blockquote>
 </div>
